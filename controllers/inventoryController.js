@@ -30,14 +30,12 @@ router.post("/create", validateSession, (req, res) => {
 router.delete("/:id/delete", validateSession, function (req, res) {
   const query = { where: { id: req.params.id, owner_id: req.user.id } };
 
-  Inventory.destroy(query)
-    .then(() =>
-      res
-        .status(200)
-        .json({ message: "Inventory item Removed from Firelogger Database" })
-    )
-let validateSession = require("../middleware/validate-session");
-const Inventory = require("../db").import("../models/log");
+  Inventory.destroy(query).then(() =>
+    res
+      .status(200)
+      .json({ message: "Inventory item Removed from Firelogger Database" })
+  );
+});
 
 router.get("/", validateSession, (req, res) => {
   let userid = req.user.id;
@@ -47,7 +45,6 @@ router.get("/", validateSession, (req, res) => {
     .then((Inventory) => res.status(200).json(Inventory))
     .catch((err) => res.status(500).json({ error: err }));
 });
-
 
 router.put("/update/:entryId", validateSession, function (req, res) {
   const updateInventory = {
