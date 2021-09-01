@@ -1,5 +1,5 @@
 {
-  "name": "modules-server",
+  "name": "firelogger",
   "version": "1.0.0",
   "description": "Blue Badge Project",
   "main": "app.js",
