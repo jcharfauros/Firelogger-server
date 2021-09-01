@@ -48,10 +48,14 @@ router.get("/", validateSession, (req, res) => {
 
 router.put("/update/:entryId", validateSession, function (req, res) {
   const updateInventory = {
-    description: req.body.inventory.description,
-    definition: req.body.inventory.definition,
-    result: req.body.inventory.result,
-    owner_id: req.user.id,
+    category: req.body.inventory.category,
+    name: req.body.inventory.name,
+    year: req.body.inventory.year,
+    model: req.body.inventory.model,
+    serial_number: req.body.inventory.serial_number,
+    pic_url: req.body.inventory.pic_url,
+    value: req.body.inventory.value,
+    owner_id: req.user.id, //attaches a user's id number to their inventory item
   };
 
   const query = { where: { id: req.params.entryId, owner_id: req.user.id } };
