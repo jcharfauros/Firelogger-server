@@ -10,6 +10,7 @@ router.post("/signup", function (req, res) {
   User.create({
     email: req.body.user.email,
     password: bcrypt.hashSync(req.body.user.password, 10),
+    name: req.body.user.name,
   })
     .then(function createSuccess(user) {
       let token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
@@ -28,7 +29,7 @@ router.post("/signup", function (req, res) {
 });
 
 router.post("/login", function (req, res) {
-  User.findOne({ where: { user: req.body.user.email } })
+  User.findOne({ where: { email: req.body.user.email } })
     .then(function loginSuccess(user) {
       if (user) {
         bcrypt.compare(
