@@ -27,7 +27,7 @@ router.post("/create", validateSession, (req, res) => {
 });
 
 //User can remove/delete an Itemfrom inventory via ID
-router.delete("/:id/delete", validateSession, function (req, res) {
+router.delete("/delete/:id", validateSession, function (req, res) {
   const query = { where: { id: req.params.id, owner_id: req.user.id } };
 
   Inventory.destroy(query).then(() =>
@@ -58,7 +58,7 @@ router.put("/update/:entryId", validateSession, function (req, res) {
     serial_number: req.body.inventory.serial_number,
     pic_url: req.body.inventory.pic_url,
     value: req.body.inventory.value,
-    owner_id: req.user.id,
+    owner_id: req.user.id, //attaches a user's id number to their inventory item
   };
 
   const query = { where: { id: req.params.entryId, owner_id: req.user.id } };
