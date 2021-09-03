@@ -9,9 +9,9 @@ let inventory = require("./controllers/inventoryController");
 sequelize.sync();
 
 app.use(express.json());
+app.use(require("./middleware/headers"));
 
 app.use("/user", user); //no validation route, will probably not use - jdc
-app.use(require("./middleware/validate-session"));
 app.use("/inventory", inventory);
 
 app.listen(3000, function () {
