@@ -46,7 +46,10 @@ router.post("/login", function (req, res) {
                 sessionToken: token,
               });
             } else {
-              res.status(502).send({ error: "Login failed" });
+              res.status(502).send({
+                error:
+                  "Login failed - Please check email and password and try again",
+              });
             }
           }
         );
