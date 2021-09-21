@@ -28,7 +28,9 @@ app.get("/hotels", async (req, res) => {
 
 // ADDING NEW ENDPOINT FOR PET LODGING FETCH BELOW
 app.get("/petcare", async (req, res) => {
+
   let apiKey = process.env.REACT_APP_GOOGLE_API_KEY;
+
   let url = `https://maps.googleapis.com/maps/api/place/textsearch/json?radius=5000&language=en&query=petboarding&key=${apiKey}`;
 
   let response = await fetch(url);
