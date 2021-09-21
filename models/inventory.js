@@ -20,11 +20,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    pic_url: {
+    value: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    value: {
+    pic_url: {
       type: DataTypes.STRING,
       allowNull: false,
     },

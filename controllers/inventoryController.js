@@ -13,8 +13,8 @@ router.post("/create", validateSession, (req, res) => {
     year: req.body.inventory.year,
     model: req.body.inventory.model,
     serial_number: req.body.inventory.serial_number,
-    pic_url: req.body.inventory.pic_url,
     value: req.body.inventory.value,
+    pic_url: req.body.inventory.pic_url,
     owner_id: req.user.id, //attaches a user's id number to their inventory item
   })
     .then((inventory) => {
