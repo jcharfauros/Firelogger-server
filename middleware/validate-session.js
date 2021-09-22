@@ -3,14 +3,12 @@ const User = require("../db").import("../models/user");
 
 const validateSession = (req, res, next) => {
   const token = req.headers.authorization;
-  // console.log('the token is here -->', token); //uncomment when we got to test - jdc
   if (!token) {
     return res
       .status(403)
       .send({ auth: false, message: "Oh no, no token provided" });
   } else {
     jwt.verify(token, process.env.JWT_SECRET, (err, decodeToken) => {
-      // console.log('decodeToken right here -->', decodeToken); //uncomment to test
       if (!err && decodeToken) {
         User.findOne({
           where: {
@@ -18,9 +16,7 @@ const validateSession = (req, res, next) => {
           },
         })
           .then((user) => {
-            // console.log('hello user -->', user); //uncomment to test
             if (!user) throw err;
-            // console.log('req -->', req); //uncomment to test
             req.user = user;
             return next();
           })
